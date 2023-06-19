@@ -1,0 +1,69 @@
+
+     <%-include('common/head.ejs')-%>
+      <title>TBD Kelompok 8</title>
+   </head>
+   <body>
+    <%-include('common/header.ejs')-%>
+      <div class="container-fluid bg-side-nav">
+         <div class="row">
+            <div class="col-lg-2 sidebaare">
+                <%-include('common/sidebaar.ejs')-%>
+               
+            </div>
+            <div class="col-lg-10">
+
+               <br><br>
+               <%if(sucess && sucess !=''){%>
+                  <div class="alert alert-success" role="alert">       <%= sucess%>   </div>
+                       <%}else if(err && err !=''){%>
+                  <div class="alert alert-danger" role="alert">        <%= err%>  </div>  <%}%> 
+
+
+
+              <div class="dashboard-content-area">
+                <!-- put your contente -->
+
+               <h1>Daftar Pengeluaran</h1>
+               <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                     <tr>
+                        <th>Judul</th>
+                        <th>Tanggal</th>
+                        <th>Jumlah</th>
+                        <th>Status</th>
+                        <th>Deskripsi</th>
+                        <th>Edit</th>
+                        <th>Hapus</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <%x.forEach((y)=>{%>
+
+                    
+                     <tr>                  
+                        <td><%=y.category%></td>
+                        <td><%=y.categoryUrl%></td>
+                        <td><%=y.categoryTitle%></td>
+                        <td><%=y.categoryMeta%></td>
+                        <td><%=y.categoryDesc%></td>
+                        <td>
+                           <a class="btn btn-primary" href="/admin/category/edit/<%=y.category%>">Edit</a> </td>
+                           <td>                    
+                           <form style="display: inline;" action="/admin/category/delete/<%=y.category%>?_method=DELETE" method="POST">
+                              <button style="cursor: pointer;" type="submit" class="btn btn-danger ml-2">Hapus</button>
+                           </form>
+                        </td>
+                     </tr>
+                     <%})%>
+                     
+                  </tbody>
+               </table>
+               <center> <br> <a class="btn btn-success btn-md" href="/admin/category/add-category/">Tambah</a> </center>
+              <!-- end your content here -->
+             </div>
+
+            </div>
+         </div>
+      </div>
+
+     <%-include('common/footer.ejs')-%>

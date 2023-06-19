@@ -1,0 +1,71 @@
+
+     <%-include('common/head.ejs')-%>
+      <title>TBD Kelompok 8</title>
+   </head>
+   <body>
+    <%-include('common/header.ejs')-%>
+      <div class="container-fluid bg-side-nav">
+         <div class="row">
+            <div class="col-lg-2 sidebaare">
+                <%-include('common/sidebaar.ejs')-%>
+               
+            </div>
+            <div class="col-lg-10">
+
+              <div class="dashboard-content-area">
+                <!-- put your contente -->
+
+                <%if(sucess && sucess !=''){%>
+                  <div class="alert alert-success" role="alert">       <%= sucess%>   </div>
+                       <%}else if(err && err !=''){%>
+                  <div class="alert alert-danger" role="alert">        <%= err%>  </div>  <%}%> 
+  
+
+               <h1>Daftar Pemasukan</h1>
+               
+               <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                     <tr>
+                  
+                        <th>Judul</th>
+                        <th>Tanggal</th>
+                        <th>Jumlah</th>
+                        <th>Status</th>
+                        <th>Deskripsi</th>
+                        <th>Edit</th>
+                        <th>Hapus</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+             
+
+                        <%x.forEach((y)=>{%>
+                           <tr>                       
+                              <td><%=y.pageUrl%></td>
+                              <td><%=y.pageNavText%></td>
+                              <td><%=y.pageTitle%></td>
+                              <td> <%=y.pageMetaDescrition%></td>
+                              <td> <%=y.pageMetaKeyword%></td>
+                              <td>
+                                 <a class="btn btn-primary" href="/admin/pages/edit-pages/<%=y.pageUrl%>">Edit</a>   </td>
+                                 <td>                  
+                                 <form style="display: inline;" action="/admin/pages/delete-pages/<%=y.pageUrl%>?_method=DELETE" method="POST">
+                                    <button style="cursor: pointer;" type="submit" class="btn btn-danger ml-2">Hapus</button>
+                                 </form>
+                              </td>
+                           </tr>
+                        <%x})%>
+     
+              
+                  </tbody>
+               </table>
+
+              <center> <br> <a class="btn btn-success btn-md" href="/admin/pages/add-pages/">Tambah Pemasukan</a> </center>
+              <!-- end your content here -->
+             </div>
+
+            </div>
+         </div>
+      </div>
+
+     <%-include('common/footer.ejs')-%>
